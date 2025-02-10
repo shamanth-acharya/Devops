@@ -36,6 +36,6 @@ spec:
     app: devops-app
   ports:
     - protocol: TCP
-      port: 80  # External port
-      targetPort: 5000  # Matches container port
-  type: LoadBalancer  # Exposes externally with an external IP
+      port: 80  
+      targetPort: 5000  
+  type: LoadBalancer  
