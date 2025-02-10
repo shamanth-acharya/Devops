@@ -11,7 +11,7 @@ steps:
     args: ['push', 'gcr.io/first-project-11512/devops-app']
 
   # Step 3: Deploy to Google Kubernetes Engine (GKE)
-  - name: 'gcr.io/cloud-builders/my-gke-deploy'
+  - name: 'gcr.io/cloud-builders/gke-deploy'
     args:
       - run
       - --filename=deployment.yaml
