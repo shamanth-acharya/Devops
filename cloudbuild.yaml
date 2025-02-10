@@ -1,23 +1,20 @@
-options:
-    logging: CLOUD_LOGGING_ONLY
-  
 steps:
   # Step 1: Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/first-project-11512/devops-app', '.']
+    args: ['build', '-t', 'gcr.io/first-project-11512/my-flask-app', '.']
 
-  # Step 2: Push the image to Google Container Registry
+  # Step 2: Push the image to Google Container Registry (GCR)
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/first-project-11512/devops-app']
+    args: ['push', 'gcr.io/first-project-11512/my-flask-app']
 
-  # Step 3: Deploy to Google Kubernetes Engine (GKE)
+  # Step 3: Deploy to GKE
   - name: 'gcr.io/cloud-builders/gke-deploy'
     args:
-      - run
-      - --filename=deployment.yaml
-      - --image=gcr.io/first-project-11512/devops-app
-      - --location=us-central1
-      - --cluster=my-gke-cluster
+      - 'run'
+      - '--filename=kubernetes.yaml'
+      - '--image=gcr.io/first-project-11512/my-flask-app'
+      - '--location=us-central1-a'
+      - '--cluster=my-gke-cluster'
 
 images:
-  - 'gcr.io/first-project-11512/devops-app'
+  - 'gcr.io/first-project-11512/my-flask-app'
